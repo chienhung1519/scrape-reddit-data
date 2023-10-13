@@ -20,6 +20,7 @@ iter_times = target_num // 100
 sleep_time = 60
 
 # Initialize database
+# https://www.learncodewithmike.com/2021/05/pandas-and-sqlite.html
 con = sqlite3.connect("mydatabase.db")
 
 # Loop through subreddits
