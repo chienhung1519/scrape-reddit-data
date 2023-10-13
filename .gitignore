@@ -1,0 +1,6 @@
+data/
+secrets.json
+workspace.ipynb
+mydatabase.db
+test.py
+*.pyc
