@@ -4,9 +4,16 @@ import requests
 import pandas as pd
 import time
 import sqlite3
+import logging
 
 from utils import request_reddit_oauth, df_from_reddit_response
 
+logging.basicConfig(
+    filename="run.log", 
+    encoding="utf-8", 
+    level=logging.DEBUG, 
+    format="%(asctime)s %(message)s"
+)
 
 # Load subreddit data
 subreddits = Path("subreddits.txt").read_text().splitlines()
@@ -46,9 +53,9 @@ for subreddit in subreddits:
             
             # append new_df to data
             data = pd.concat([data, new_df], ignore_index=True)
-            print(f"Added {len(new_df)} rows from {subreddit}.")
+            logging.info(f"Added {len(new_df)} rows from {subreddit}.")
         except Exception as e:
-            print(f"Failed to get data from {subreddit} after {i} times: {e}")
+            logging.error(f"Failed to get data from {subreddit} after {i} times: {e}")
 
         # sleep
         print(f"Sleeping for {sleep_time} seconds...")
@@ -63,5 +70,5 @@ for subreddit in subreddits:
         pass # table doesn't exist yet
 
     if len(data) > 0:
-        print(f"Saving {len(data)} rows to database...")
+        logging.info(f"Saving {len(data)} rows to database...")
         data.to_sql("reddit", con, if_exists="append", index=False)
