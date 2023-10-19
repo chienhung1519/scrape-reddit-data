@@ -4,3 +4,4 @@ workspace.ipynb
 mydatabase.db
 test.py
 *.pyc
+*.log
