@@ -9,17 +9,17 @@ import logging
 from utils import request_reddit_oauth, df_from_reddit_response
 
 logging.basicConfig(
-    filename="run.log", 
+    filename="/home/chchen/python_work/scrape-reddit-data/run.log", 
     encoding="utf-8", 
     level=logging.DEBUG, 
     format="%(asctime)s %(message)s"
 )
 
 # Load subreddit data
-subreddits = Path("subreddits.txt").read_text().splitlines()
+subreddits = Path("/home/chchen/python_work/scrape-reddit-data/subreddits.txt").read_text().splitlines()
 
 # Load secrets
-secrets = json.loads(Path("secrets.json").read_text())
+secrets = json.loads(Path("/home/chchen/python_work/scrape-reddit-data/secrets.json").read_text())
 
 # Initialize params
 target_num = 1000
@@ -28,7 +28,7 @@ sleep_time = 60
 
 # Initialize database
 # https://www.learncodewithmike.com/2021/05/pandas-and-sqlite.html
-con = sqlite3.connect("mydatabase.db")
+con = sqlite3.connect("/home/chchen/python_work/scrape-reddit-data/mydatabase.db")
 
 # Loop through subreddits
 for subreddit in subreddits:
