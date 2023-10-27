@@ -28,7 +28,7 @@ sleep_time = 60
 
 # Initialize database
 # https://www.learncodewithmike.com/2021/05/pandas-and-sqlite.html
-con = sqlite3.connect("/home/chchen/python_work/scrape-reddit-data/mydatabase.db")
+con = sqlite3.connect("/nfs/nas-7.1/chchen/reddit/mydatabase.db")
 
 # Loop through subreddits
 for subreddit in subreddits:
